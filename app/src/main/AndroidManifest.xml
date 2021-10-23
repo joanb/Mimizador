@@ -9,12 +9,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Mimizador">
-        <activity
-                android:name=".MimizadorActivity"
-                android:exported="true"
+        <activity android:name=".MimizadorActivity"
                 android:label="@string/title_activity_mimizador"
-                android:theme="@style/Theme.Mimizador.NoActionBar" />
-        <activity android:name=".MainActivity">
+                android:theme="@style/Theme.Mimizador.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
