@@ -48,6 +48,7 @@ class MimizadorActivity : ComponentActivity() {
 fun Greeting(viewModel: MimizadorViewModel) {
   val uiState = viewModel.state.collectAsState()
   var input by remember { mutableStateOf("") }
+  viewModel.normalText.value = input
   Column(
     Modifier
       .padding(8.dp)

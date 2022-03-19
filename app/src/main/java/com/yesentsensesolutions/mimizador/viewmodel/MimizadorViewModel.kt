@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 
 class MimizadorViewModel : ViewModel() {
   val state = MutableStateFlow<MimizadorState>(MimizadorState.Idle)
+  val normalText = MutableStateFlow<String>("")
 
   fun sendEvent(intent: MimizadorIntent) {
     // TODO: improve coroutines treatment
@@ -18,7 +19,7 @@ class MimizadorViewModel : ViewModel() {
 
   suspend fun reduce(userIntent: MimizadorIntent, oldState: MimizadorState) {
     when (userIntent) {
-      is MimizadorIntent.Mimize -> state.emit(MimizadorState.Mimized(userIntent.normalText.mimize()))
+      is MimizadorIntent.Mimize -> state.emit(MimizadorState.Mimized(normalText.value.mimize()))
     }
   }
 }
