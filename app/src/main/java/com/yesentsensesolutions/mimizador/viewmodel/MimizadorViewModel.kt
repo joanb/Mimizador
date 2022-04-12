@@ -5,7 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.yesentsensesolutions.mimizador.domain.mimize
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlin.system.measureTimeMillis
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
 
+@ExperimentalTime
 class MimizadorViewModel : ViewModel() {
   val state = MutableStateFlow<MimizadorState>(MimizadorState.Idle)
   val normalText = MutableStateFlow<String>("")
@@ -19,7 +23,12 @@ class MimizadorViewModel : ViewModel() {
 
   suspend fun reduce(userIntent: MimizadorIntent, oldState: MimizadorState) {
     when (userIntent) {
-      is MimizadorIntent.Mimize -> state.emit(MimizadorState.Mimized(normalText.value.mimize()))
+      is MimizadorIntent.Mimize -> {
+        val time = measureTimeMillis {
+          state.emit(MimizadorState.Mimized(normalText.value.mimize()))
+        }
+        print("MIMIZE TIME: $time")
+      }
     }
   }
 }
